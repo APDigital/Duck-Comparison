@@ -10,6 +10,7 @@ namespace Duck
     {
         static void Main(string[] args)
         {
+            var quack = new Duck("Sir Quackalot", "Mallard", 100, 17);
         }
     }
 }
