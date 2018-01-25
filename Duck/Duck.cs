@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comparison
 {
-    public class Duck
+    public class Duck : IComparable<Duck>
     {
         public string Name { get; }
         public string Type { get; }
@@ -27,7 +27,7 @@ namespace Comparison
             {
                 return false;
             }
-            return Name == d2.Name && Type == d2.Type && WeightInGrams == d2.WeightInGrams && AgeInMonths == d2.AgeInMonths;  
+            return Name == d2.Name && Type == d2.Type && WeightInGrams == d2.WeightInGrams && AgeInMonths == d2.AgeInMonths;
         }
         //followed explanation from https://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode
         public override int GetHashCode()
@@ -42,8 +42,18 @@ namespace Comparison
                 return hash;
             }
         }
-
+        public override string ToString()
+        {
+            return string.Format("Duck Name : {0}, Type: {1}, Weight (g): {2}, Age (m): {3}", Name, Type, WeightInGrams, AgeInMonths);
+        }
+        //sorts objects based on weight in grams in Descending order
+        public int CompareTo(Duck other)
+        {
+            if (WeightInGrams < other.WeightInGrams) { return 1; }
+            else if (WeightInGrams > other.WeightInGrams) { return -1; }
+            else { return 0; }
+        }
     }
 
-   
+
 }
