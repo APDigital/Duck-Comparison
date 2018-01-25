@@ -15,10 +15,19 @@ namespace Comparison
                 { new Duck("Sir Quackalot", "Mallard", 100, 17), "" },
                 { new Duck("Mr Quack", "Mallard", 120, 20),"" }
             };
-            var list = dictionary.ToList();
-            list.Sort();
+            List<Duck> duckList = dictionary.OrderByDescending(d => d.Value)
+                 .Select(d => d.Key)
+                 .ToList();
 
-            Console.WriteLine(list);
+            foreach (var duck in duckList)
+            {
+                Console.WriteLine(duck);
+            }
+
+            Console.ReadLine();
+
+
+
         }
     }
 }
